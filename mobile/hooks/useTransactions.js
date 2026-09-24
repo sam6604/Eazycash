@@ -1,5 +1,3 @@
-// react custom hook file
-
 import { useCallback, useMemo, useState } from "react";
 import { Alert } from "react-native";
 import { API_URL } from "../constants/api";
@@ -23,9 +21,6 @@ export const DEFAULT_FILTERS = {
   customTo: null,
 };
 
-// const API_URL = "https://wallet-api-cxqp.onrender.com/api";
-// const API_URL = "http://localhost:5001/api";
-
 export const useTransactions = (userId) => {
   const [transactions, setTransactions] = useState([]);
   const [summary, setSummary] = useState({
@@ -37,7 +32,6 @@ export const useTransactions = (userId) => {
   const [error, setError] = useState(null);
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
 
-  // useCallback is used for performance reasons, it will memoize the function
   const fetchTransactions = useCallback(async () => {
     try {
       const response = await fetch(`${API_URL}/transactions/${userId}`);
@@ -68,7 +62,6 @@ export const useTransactions = (userId) => {
     setIsLoading(true);
     setError(null);
     try {
-      // can be run in parallel
       await Promise.all([fetchTransactions(), fetchSummary()]);
     } catch (error) {
       console.error("Error loading data:", error);

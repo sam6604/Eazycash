@@ -1,4 +1,3 @@
-// constants/categories.js
 import { COLORS } from "./colors";
 import { shadeColor } from "../lib/utils";
 

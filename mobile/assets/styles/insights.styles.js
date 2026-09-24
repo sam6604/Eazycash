@@ -1,4 +1,3 @@
-// styles/insights.styles.js
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../constants/colors";
 

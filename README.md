@@ -1,74 +1,61 @@
-<h1 align="center">💸 Eazycash - Expense Tracker with React Native & Express 🚀</h1>
+<h1 align="center">💸 Eazycash</h1>
+<p align="center">A full-stack expense tracker built with React Native (Expo) and Express.</p>
 
 ![Demo App](/mobile/assets/images/screenshot-for-readme.png)
 
-## 🎯 What You'll Build
+## Features
 
-This isn't just a front-end app — it's a **complete mobile application** with backend integration, authentication, and cloud-based storage.
+- 🔐 Email/password authentication with email verification (Clerk)
+- 🏠 Home screen with balance, income/expense summary, and recent transactions
+- 🔎 Search, category, income/expense, and date-range filters on the transaction list
+- 🏷️ Categorized transactions (Food, Transport, Shopping, Bills, Rent, Entertainment, Health, Salary, Other)
+- 💰 Amounts shown in Indian Rupees (₹) with Indian-style formatting
+- 📊 Monthly per-category budgets with progress tracking
+- 📈 Spending insights — category breakdown and a 6-month income/expense trend
+- 🔁 Recurring monthly transactions (rent, subscriptions, salary) with automatic catch-up
+- 🔄 Pull-to-refresh, delete transactions, and sign out
 
-✅ Works on **iOS & Android (simulator or real device)**  
-✅ Uses your existing **React knowledge**  
-✅ No need for Swift, Kotlin, or native modules  
-✅ Full-stack project in **under 4 hours**
+## Tech stack
 
----
+- **Mobile**: React Native, Expo Router, Clerk
+- **Backend**: Express, Neon (Postgres), Upstash (Redis rate limiting)
 
-## 🧑‍🍳 App Features Overview
+## Project structure
 
-- 🔐 **Authentication** with email verification using **Clerk**
-- 📝 **Signup & Login** flows with 6-digit email code
-- 🏠 **Home Screen** that shows your current balance & past transactions
-- ➕ **Create Screen** to add **income** or **expense** transactions
-- 🔄 **Pull to refresh** functionality from scratch
-- 🗑️ **Delete transactions** to update balance
-- 🚪 **Logout** to navigate back to login screen
+```
+backend/   Express API (transactions, budgets, insights)
+mobile/    Expo Router app
+```
 
----
+## Setup
 
-## 🧠 What You’ll Learn
+### Backend (`/backend`)
 
-- ⚙️ Build and deploy an **Express API** with **PostgreSQL** using **Neon**
-- 🔐 Implement authentication & email verification with **Clerk**
-- 📲 Build a full mobile app with **React Native & Expo**
-- 🧵 Manage state and navigation using **React Navigation**
-- 🛡️ Understand and apply **Rate Limiting** using **Redis**
-- 🚀 Deploy both backend & mobile with cloud-based tools
-- 🧪 Beginner-friendly for first-time React Native devs
-
----
-
-## 📁 .env Setup
-
-### ⚙️ Backend (`/backend`)
+Create a `.env` file:
 
 ```bash
 PORT=5001
 NODE_ENV=development
 
-CLERK_PUBLISHABLE_KEY=<your_clerk_publishable_key>
-CLERK_SECRET_KEY=<your_clerk_secret_key>
-
 DATABASE_URL=<your_neon_postgres_connection_url>
 
-REDIS_URL=<your_redis_connection_url>
+UPSTASH_REDIS_REST_URL=<your_upstash_redis_rest_url>
+UPSTASH_REDIS_REST_TOKEN=<your_upstash_redis_rest_token>
 ```
-
-### ⚙️ Backend (`/backend`)
-
-```bash
-EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=<your_clerk_key>
-```
-
-## ⚙️ Run the backend
 
 ```bash
 cd backend
 npm install
 npm run dev
-
 ```
 
-## 📱 Run the mobile
+### Mobile (`/mobile`)
+
+Create a `.env` file:
+
+```bash
+EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=<your_clerk_publishable_key>
+```
 
 ```bash
 cd mobile

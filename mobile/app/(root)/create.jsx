@@ -27,7 +27,6 @@ const CreateScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCreate = async () => {
-    // validations
     if (!title.trim()) return Alert.alert("Error", "Please enter a transaction title");
     if (!amount || isNaN(parseFloat(amount)) || parseFloat(amount) <= 0) {
       Alert.alert("Error", "Please enter a valid amount");
@@ -38,7 +37,6 @@ const CreateScreen = () => {
 
     setIsLoading(true);
     try {
-      // Format the amount (negative for expenses, positive for income)
       const formattedAmount = isExpense
         ? -Math.abs(parseFloat(amount))
         : Math.abs(parseFloat(amount));

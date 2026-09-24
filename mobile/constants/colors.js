@@ -1,4 +1,3 @@
-// constants/colors.js
 const coffeeTheme = {
   primary: "#8B593E",
   background: "#FFF8F3",
