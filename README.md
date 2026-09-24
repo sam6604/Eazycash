@@ -1,8 +1,6 @@
 <h1 align="center">💸 Eazycash</h1>
 <p align="center">A full-stack expense tracker built with React Native (Expo) and Express.</p>
 
-![Demo App](/mobile/assets/images/screenshot-for-readme.png)
-
 ## Features
 
 - 🔐 Email/password authentication with email verification (Clerk)
