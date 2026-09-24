@@ -8,6 +8,7 @@ const coffeeTheme = {
   textLight: "#9A8478",
   expense: "#E74C3C",
   income: "#2ECC71",
+  warning: "#E5A83B",
   card: "#FFFFFF",
   shadow: "#000000",
 };
@@ -21,6 +22,7 @@ const forestTheme = {
   textLight: "#66BB6A",
   expense: "#C62828",
   income: "#388E3C",
+  warning: "#F9A825",
   card: "#FFFFFF",
   shadow: "#000000",
 };
@@ -34,6 +36,7 @@ const purpleTheme = {
   textLight: "#BA68C8",
   expense: "#D32F2F",
   income: "#388E3C",
+  warning: "#F9A825",
   card: "#FFFFFF",
   shadow: "#000000",
 };
@@ -47,6 +50,7 @@ const oceanTheme = {
   textLight: "#4FC3F7",
   expense: "#EF5350",
   income: "#26A69A",
+  warning: "#F9A825",
   card: "#FFFFFF",
   shadow: "#000000",
 };

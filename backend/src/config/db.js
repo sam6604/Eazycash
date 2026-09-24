@@ -16,6 +16,18 @@ export async function initDB() {
       created_at DATE NOT NULL DEFAULT CURRENT_DATE
     )`;
 
+    await sql`CREATE TABLE IF NOT EXISTS budgets(
+      id SERIAL PRIMARY KEY,
+      user_id VARCHAR(255) NOT NULL,
+      category VARCHAR(255) NOT NULL,
+      amount DECIMAL(10,2) NOT NULL,
+      month VARCHAR(7) NOT NULL,
+      UNIQUE(user_id, category, month)
+    )`;
+
+    await sql`ALTER TABLE transactions ADD COLUMN IF NOT EXISTS is_recurring BOOLEAN NOT NULL DEFAULT false`;
+    await sql`ALTER TABLE transactions ADD COLUMN IF NOT EXISTS recurring_day INTEGER`;
+
     console.log("Database initialized successfully");
   } catch (error) {
     console.log("Error initializing DB", error);

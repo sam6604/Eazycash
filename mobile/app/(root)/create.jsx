@@ -4,7 +4,6 @@ import {
   Alert,
   TouchableOpacity,
   TextInput,
-  ActivityIndicatorBase,
   ActivityIndicator,
 } from "react-native";
 import { useRouter } from "expo-router";
@@ -13,17 +12,8 @@ import { useState } from "react";
 import { API_URL } from "../../constants/api";
 import { styles } from "../../assets/styles/create.styles";
 import { COLORS } from "../../constants/colors";
+import { CATEGORIES } from "../../constants/categories";
 import { Ionicons } from "@expo/vector-icons";
-
-const CATEGORIES = [
-  { id: "food", name: "Food & Drinks", icon: "fast-food" },
-  { id: "shopping", name: "Shopping", icon: "cart" },
-  { id: "transportation", name: "Transportation", icon: "car" },
-  { id: "entertainment", name: "Entertainment", icon: "film" },
-  { id: "bills", name: "Bills", icon: "receipt" },
-  { id: "income", name: "Income", icon: "cash" },
-  { id: "other", name: "Other", icon: "ellipsis-horizontal" },
-];
 
 const CreateScreen = () => {
   const router = useRouter();
@@ -33,6 +23,7 @@ const CreateScreen = () => {
   const [amount, setAmount] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [isExpense, setIsExpense] = useState(true);
+  const [isRecurring, setIsRecurring] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCreate = async () => {
@@ -62,6 +53,7 @@ const CreateScreen = () => {
           title,
           amount: formattedAmount,
           category: selectedCategory,
+          is_recurring: isRecurring,
         }),
       });
 
@@ -136,7 +128,7 @@ const CreateScreen = () => {
 
         {/* AMOUNT CONTAINER */}
         <View style={styles.amountContainer}>
-          <Text style={styles.currencySymbol}>$</Text>
+          <Text style={styles.currencySymbol}>₹</Text>
           <TextInput
             style={styles.amountInput}
             placeholder="0.00"
@@ -196,6 +188,24 @@ const CreateScreen = () => {
             </TouchableOpacity>
           ))}
         </View>
+
+        {/* RECURRING TOGGLE */}
+        <TouchableOpacity
+          style={styles.recurringRow}
+          onPress={() => setIsRecurring((prev) => !prev)}
+        >
+          <Ionicons
+            name={isRecurring ? "checkbox" : "square-outline"}
+            size={22}
+            color={isRecurring ? COLORS.primary : COLORS.textLight}
+          />
+          <View style={styles.recurringTextContainer}>
+            <Text style={styles.recurringLabel}>Repeat monthly</Text>
+            <Text style={styles.recurringHint}>
+              Great for rent, subscriptions and salary
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
 
       {isLoading && (

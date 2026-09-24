@@ -4,8 +4,25 @@ import { styles } from "../assets/styles/home.styles";
 import { COLORS } from "../constants/colors";
 import { useRouter } from "expo-router";
 
-const NoTransactionsFound = () => {
+const NoTransactionsFound = ({ filtered = false }) => {
   const router = useRouter();
+
+  if (filtered) {
+    return (
+      <View style={styles.emptyState}>
+        <Ionicons
+          name="search-outline"
+          size={60}
+          color={COLORS.textLight}
+          style={styles.emptyStateIcon}
+        />
+        <Text style={styles.emptyStateTitle}>No matching transactions</Text>
+        <Text style={styles.emptyStateText}>
+          Try adjusting your search or filters to find what you&apos;re looking for
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.emptyState}>

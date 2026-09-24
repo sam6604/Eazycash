@@ -8,8 +8,7 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.background,
   },
   content: {
-    padding: 20,
-    paddingBottom: 0,
+    paddingTop: 20,
   },
   header: {
     flexDirection: "row",
@@ -164,6 +163,13 @@ export const styles = StyleSheet.create({
   transactionLeft: {
     flex: 1,
   },
+  transactionTitleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  recurringIcon: {
+    marginLeft: 6,
+  },
   transactionTitle: {
     fontSize: 16,
     fontWeight: "500",
@@ -256,9 +262,157 @@ export const styles = StyleSheet.create({
   },
   transactionsList: {
     flex: 1,
-    marginHorizontal: 20,
   },
   transactionsListContent: {
+    paddingHorizontal: 20,
     paddingBottom: 20,
+  },
+  searchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLORS.white,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    marginBottom: 12,
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  searchInput: {
+    flex: 1,
+    paddingVertical: 10,
+    fontSize: 15,
+    color: COLORS.text,
+  },
+  filterRow: {
+    flexDirection: "row",
+    gap: 8,
+    marginBottom: 10,
+  },
+  filterChip: {
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    backgroundColor: COLORS.white,
+  },
+  filterChipActive: {
+    backgroundColor: COLORS.primary,
+    borderColor: COLORS.primary,
+  },
+  filterChipText: {
+    fontSize: 13,
+    color: COLORS.text,
+  },
+  filterChipTextActive: {
+    color: COLORS.white,
+    fontWeight: "600",
+  },
+  filterChipIcon: {
+    marginRight: 4,
+  },
+  customDateRow: {
+    flexDirection: "row",
+    gap: 8,
+    marginBottom: 10,
+  },
+  customDateButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    backgroundColor: COLORS.white,
+  },
+  customDateButtonText: {
+    fontSize: 13,
+    color: COLORS.text,
+    marginLeft: 6,
+  },
+  errorBanner: {
+    backgroundColor: "#FFE5E5",
+    padding: 12,
+    borderRadius: 8,
+    borderLeftWidth: 4,
+    borderLeftColor: COLORS.expense,
+    marginBottom: 12,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  errorBannerText: {
+    flex: 1,
+    color: COLORS.text,
+    marginLeft: 8,
+    fontSize: 13,
+  },
+  quickActionsRow: {
+    flexDirection: "row",
+    gap: 10,
+    marginBottom: 16,
+  },
+  quickActionButton: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: COLORS.card,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderRadius: 14,
+    paddingVertical: 12,
+    shadowColor: COLORS.shadow,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.06,
+    shadowRadius: 2,
+    elevation: 1,
+  },
+  quickActionText: {
+    marginLeft: 8,
+    fontSize: 14,
+    fontWeight: "600",
+    color: COLORS.text,
+  },
+  pickerModalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.4)",
+    justifyContent: "flex-end",
+  },
+  pickerModalCard: {
+    backgroundColor: COLORS.card,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    paddingBottom: 24,
+  },
+  pickerModalHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
+  },
+  pickerModalTitle: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: COLORS.text,
+  },
+  pickerModalAction: {
+    fontSize: 15,
+    fontWeight: "600",
+    color: COLORS.primary,
+  },
+  pickerModalCancel: {
+    fontSize: 15,
+    color: COLORS.textLight,
+  },
+  pickerModalPicker: {
+    height: 360,
+    alignSelf: "stretch",
   },
 });

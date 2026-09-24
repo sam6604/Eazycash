@@ -159,4 +159,26 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  recurringRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 20,
+    paddingTop: 16,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.border,
+  },
+  recurringTextContainer: {
+    flex: 1,
+    marginLeft: 10,
+  },
+  recurringLabel: {
+    fontSize: 15,
+    fontWeight: "500",
+    color: COLORS.text,
+  },
+  recurringHint: {
+    fontSize: 12,
+    color: COLORS.textLight,
+    marginTop: 2,
+  },
 });
