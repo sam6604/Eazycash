@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { clerkMiddleware } from "@clerk/express";
 import { initDB } from "./config/db.js";
 import rateLimiter from "./middleware/rateLimiter.js";
@@ -8,6 +9,10 @@ import transactionsRoute from "./routes/transactionsRoute.js";
 import budgetsRoute from "./routes/budgetsRoute.js";
 
 const app = express();
+
+// Lets the Expo web build call the API from the browser. Auth uses a bearer
+// token (not cookies), so allowing any origin doesn't expose user data.
+app.use(cors());
 
 // Runs table setup once per process (or once per serverless cold start).
 let dbReady;
