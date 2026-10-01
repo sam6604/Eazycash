@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { Alert } from "react-native";
-import { API_URL } from "../constants/api";
+import { useApi } from "./useApi";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -31,10 +31,11 @@ export const useTransactions = (userId) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
+  const api = useApi();
 
   const fetchTransactions = useCallback(async () => {
     try {
-      const response = await fetch(`${API_URL}/transactions/${userId}`);
+      const response = await api(`/transactions/${userId}`);
       if (!response.ok) throw new Error(`Failed to fetch transactions (${response.status})`);
       const data = await response.json();
       setTransactions(data);
@@ -42,11 +43,11 @@ export const useTransactions = (userId) => {
       console.error("Error fetching transactions:", error);
       setError("Couldn't load your transactions. Pull down to try again.");
     }
-  }, [userId]);
+  }, [api, userId]);
 
   const fetchSummary = useCallback(async () => {
     try {
-      const response = await fetch(`${API_URL}/transactions/summary/${userId}`);
+      const response = await api(`/transactions/summary/${userId}`);
       if (!response.ok) throw new Error(`Failed to fetch summary (${response.status})`);
       const data = await response.json();
       setSummary(data);
@@ -54,7 +55,7 @@ export const useTransactions = (userId) => {
       console.error("Error fetching summary:", error);
       setError("Couldn't load your balance. Pull down to try again.");
     }
-  }, [userId]);
+  }, [api, userId]);
 
   const loadData = useCallback(async () => {
     if (!userId) return;
@@ -72,7 +73,7 @@ export const useTransactions = (userId) => {
 
   const deleteTransaction = async (id) => {
     try {
-      const response = await fetch(`${API_URL}/transactions/${id}`, { method: "DELETE" });
+      const response = await api(`/transactions/${id}`, { method: "DELETE" });
       if (!response.ok) throw new Error("Failed to delete transaction");
 
       // Refresh data after deletion

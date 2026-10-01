@@ -7,9 +7,8 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { useUser } from "@clerk/clerk-expo";
 import { useState } from "react";
-import { API_URL } from "../../constants/api";
+import { useApi } from "../../hooks/useApi";
 import { styles } from "../../assets/styles/create.styles";
 import { COLORS } from "../../constants/colors";
 import { CATEGORIES } from "../../constants/categories";
@@ -17,7 +16,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const CreateScreen = () => {
   const router = useRouter();
-  const { user } = useUser();
+  const api = useApi();
 
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
@@ -41,13 +40,12 @@ const CreateScreen = () => {
         ? -Math.abs(parseFloat(amount))
         : Math.abs(parseFloat(amount));
 
-      const response = await fetch(`${API_URL}/transactions`, {
+      const response = await api("/transactions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          user_id: user.id,
           title,
           amount: formattedAmount,
           category: selectedCategory,

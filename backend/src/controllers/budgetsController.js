@@ -34,9 +34,10 @@ export async function getBudgetsByUserAndMonth(req, res) {
 
 export async function upsertBudget(req, res) {
   try {
-    const { user_id, category, amount, month } = req.body;
+    const { category, amount, month } = req.body;
+    const user_id = req.userId;
 
-    if (!user_id || !category || amount === undefined || !month) {
+    if (!category || amount === undefined || !month) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -64,7 +65,7 @@ export async function deleteBudget(req, res) {
     }
 
     const result = await sql`
-      DELETE FROM budgets WHERE id = ${id} RETURNING *
+      DELETE FROM budgets WHERE id = ${id} AND user_id = ${req.userId} RETURNING *
     `;
 
     if (result.length === 0) {

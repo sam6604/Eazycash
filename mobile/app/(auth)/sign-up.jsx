@@ -132,6 +132,9 @@ export default function SignUpScreen() {
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
 
+        {/* Mount point for Clerk's bot-protection widget (used on web) */}
+        <View nativeID="clerk-captcha" />
+
         <View style={styles.footerContainer}>
           <Text style={styles.footerText}>Already have an account?</Text>
           <TouchableOpacity onPress={() => router.back()}>

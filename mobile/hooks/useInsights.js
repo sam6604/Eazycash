@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { API_URL } from "../constants/api";
+import { useApi } from "./useApi";
 import { getMonthKey } from "../lib/utils";
 
 function lastNMonths(n) {
@@ -22,6 +22,7 @@ export const useInsights = (userId) => {
   const [trend, setTrend] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const api = useApi();
 
   const fetchInsights = useCallback(async () => {
     if (!userId) return;
@@ -31,8 +32,8 @@ export const useInsights = (userId) => {
     try {
       const month = getMonthKey();
       const [categoryRes, trendRes] = await Promise.all([
-        fetch(`${API_URL}/transactions/insights/category/${userId}?month=${month}`),
-        fetch(`${API_URL}/transactions/insights/trend/${userId}`),
+        api(`/transactions/insights/category/${userId}?month=${month}`),
+        api(`/transactions/insights/trend/${userId}`),
       ]);
 
       if (!categoryRes.ok) throw new Error(`Failed to fetch category breakdown (${categoryRes.status})`);
@@ -46,7 +47,7 @@ export const useInsights = (userId) => {
     } finally {
       setIsLoading(false);
     }
-  }, [userId]);
+  }, [api, userId]);
 
   const trendByMonth = useMemo(() => {
     const map = {};

@@ -1,12 +1,13 @@
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
-import { API_URL } from "../constants/api";
+import { useApi } from "./useApi";
 import { getMonthKey } from "../lib/utils";
 
 export const useBudgets = (userId, month = getMonthKey()) => {
   const [budgets, setBudgets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const api = useApi();
 
   const fetchBudgets = useCallback(async () => {
     if (!userId) return;
@@ -14,7 +15,7 @@ export const useBudgets = (userId, month = getMonthKey()) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${API_URL}/budgets/${userId}/${month}`);
+      const response = await api(`/budgets/${userId}/${month}`);
       if (!response.ok) throw new Error(`Failed to fetch budgets (${response.status})`);
       const data = await response.json();
       setBudgets(data);
@@ -24,14 +25,14 @@ export const useBudgets = (userId, month = getMonthKey()) => {
     } finally {
       setIsLoading(false);
     }
-  }, [userId, month]);
+  }, [api, userId, month]);
 
   const saveBudget = async (category, amount) => {
     try {
-      const response = await fetch(`${API_URL}/budgets`, {
+      const response = await api("/budgets", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ user_id: userId, category, amount, month }),
+        body: JSON.stringify({ category, amount, month }),
       });
       if (!response.ok) throw new Error("Failed to save budget");
       await fetchBudgets();
@@ -43,7 +44,7 @@ export const useBudgets = (userId, month = getMonthKey()) => {
 
   const removeBudget = async (id) => {
     try {
-      const response = await fetch(`${API_URL}/budgets/${id}`, { method: "DELETE" });
+      const response = await api(`/budgets/${id}`, { method: "DELETE" });
       if (!response.ok) throw new Error("Failed to delete budget");
       await fetchBudgets();
     } catch (err) {

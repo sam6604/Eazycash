@@ -75,9 +75,10 @@ export async function getTransactionsByUserId(req, res) {
 
 export async function createTransaction(req, res) {
   try {
-    const { title, amount, category, user_id, is_recurring } = req.body;
+    const { title, amount, category, is_recurring } = req.body;
+    const user_id = req.userId;
 
-    if (!title || !user_id || !category || amount === undefined) {
+    if (!title || !category || amount === undefined) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -106,7 +107,7 @@ export async function deleteTransaction(req, res) {
     }
 
     const result = await sql`
-      DELETE FROM transactions WHERE id = ${id} RETURNING *
+      DELETE FROM transactions WHERE id = ${id} AND user_id = ${req.userId} RETURNING *
     `;
 
     if (result.length === 0) {
