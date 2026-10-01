@@ -30,6 +30,6 @@ export async function initDB() {
     console.log("Database initialized successfully");
   } catch (error) {
     console.log("Error initializing DB", error);
-    process.exit(1);
+    throw error;
   }
 }
