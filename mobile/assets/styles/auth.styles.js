@@ -20,6 +20,22 @@ export const styles = StyleSheet.create({
     marginVertical: 15,
     textAlign: "center",
   },
+  subtitle: {
+    fontSize: 15,
+    color: COLORS.textLight,
+    textAlign: "center",
+    marginBottom: 24,
+    lineHeight: 22,
+  },
+  forgotLink: {
+    alignSelf: "flex-end",
+    marginTop: -6,
+    marginBottom: 8,
+  },
+  resendButton: {
+    alignSelf: "center",
+    marginBottom: 20,
+  },
   input: {
     backgroundColor: COLORS.white,
     borderRadius: 12,

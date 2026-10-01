@@ -79,6 +79,12 @@ export default function Page() {
           onChangeText={(password) => setPassword(password)}
         />
 
+        <Link href="/forgot-password" asChild>
+          <TouchableOpacity style={styles.forgotLink}>
+            <Text style={styles.linkText}>Forgot password?</Text>
+          </TouchableOpacity>
+        </Link>
+
         <TouchableOpacity style={styles.button} onPress={onSignInPress}>
           <Text style={styles.buttonText}>Sign In</Text>
         </TouchableOpacity>
